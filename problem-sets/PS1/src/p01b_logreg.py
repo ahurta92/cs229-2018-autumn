@@ -21,13 +21,17 @@ def main(train_path, eval_path, pred_path):
         pred_path: Path to save predictions.
     """
     x_train, y_train = util.load_dataset(train_path, add_intercept=True)
+
     x_eval, y_eval = util.load_dataset(eval_path, add_intercept=True)
 
     plt.plot(x_train, y_train, 'o')
 
-    clf = LogisticRegression(step_size=0, max_iter=100, eps=1e-5, theta_0=0, verbose=False)
+    clf = LogisticRegression()
     clf.fit(x_train, y_train)
-    clf.predict(x_eval)
+
+    y_eval=clf.predict(x_eval)
+
+    util.plot(x_eval, y_eval, clf.theta)
 
     # *** START CODE HERE ***
     # *** END CODE HERE ***
@@ -82,8 +86,31 @@ class LogisticRegression(LinearModel):
         # *** START CODE HERE ***
         # *** END CODE HERE ***
 
+# code starts to run here
 
 train_path = "..\data\ds1_train.csv"
 eval_path = "..\data\ds1_valid.csv"
 
 main(train_path, eval_path, '')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
